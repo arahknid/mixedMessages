@@ -28,28 +28,40 @@ function textElemental() {
 // [optional extra archetype]
 const textB = ['werewolf', 'vampire', 'zombie', 'cyborg', 'ghost', 'demon', 'pirate'];
 
-const textC = ['warrior', 'fighter', 'ranger', 'wizard', 'sorceror', 'rogue', 'paladin', 'knight', 'crusader', 'bard', 'druid', 'monk', 'barbarian', 'warlock', 'cleric', 'priest', 'shaman', 'samurai', 'ninja', 'necromancer', 'thief', 'serial killer', 'bounty hunter', 'hunter', 'assassin', 'secret agent', 'pacifist', 'pit fighter', 'slavedriver', 'sniper', 'con artist', 'illusionist', 'farmer', 'peasant', 'soldier', 'warlord', 'spellsword', 'artificer', 'engineer', 'scientist', 'gunslinger', 'loremaster', 'scout', 'warmage', 'summoner', 'swashbuckler', 'gladiator', 'death knight', 'pyromaniac', 'doctor']
+const textC = ['warrior', 'fighter', 'ranger', 'wizard', 'sorceror', 'rogue', 'paladin', 'knight', 'crusader', 'bard', 'druid', 'monk', 'barbarian', 'warlock', 'cleric', 'priest', 'shaman', 'samurai', 'ninja', 'necromancer', 'thief', 'serial killer', 'bounty hunter', 'hunter', 'assassin', 'secret agent', 'pacifist', 'pit fighter', 'slavedriver', 'sniper', 'con artist', 'illusionist', 'farmer', 'peasant', 'soldier', 'warlord', 'spellsword', 'artificer', 'engineer', 'scientist', 'gunslinger', 'loremaster', 'scout', 'warmage', 'summoner', 'swashbuckler', 'gladiator', 'death knight', 'pyromaniac', 'doctor'];
 
 console.log(textElemental());
-console.log(textA);
 
 
 
 // Main. Generator code is located here.
 
-
-
-
 function generate() {
-    const randA = () => {
-        return textA[Math.floor(Math.random() * textA.length)]
+    let randA = () => {
+        // 33.3% chance of a random dual-race 
+        if (Math.random() <= (1/3)) {
+             let firstA = textA[Math.floor(Math.random() * textA.length)];
+             let secondA = textA[Math.floor(Math.random() * textA.length)];
+             
+             while (secondA === firstA) {
+                 secondA = textA[Math.floor(Math.random() * textA.length)]
+                };
+            
+             return `${firstA}-${secondA}`;
+            } else {
+                return textA[Math.floor(Math.random() * textA.length)];
+            }
     };
+
     const randB = () => {
         return textB[Math.floor(Math.random() * textB.length)]
     };
+
     const randC = () => {
         return textC[Math.floor(Math.random() * textC.length)]
     };
+
+
 
     console.log(randA());
     console.log(randB());
