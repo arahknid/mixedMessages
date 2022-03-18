@@ -11,7 +11,7 @@ function elf() {
 };
 
 //// MAIN - races
-const textRace = ['alien', 'birdperson', 'dragonborn', 'dwarf', 'elemental', elf(), 'fey', 'gnome', 'goblin', 'halfling', 'human', 'lizardman', 'minotaur', 'orc', 'tiefling', 'treant', 'troll'];
+const textRace = [/*'alien', 'birdperson', 'dragonborn', */'dwarf', 'elemental']//, elf(), 'fey', 'gnome', 'goblin', 'halfling', 'human', 'lizardman', 'minotaur', 'orc', 'tiefling', 'treant', 'troll'];
 
 //  25% chance of having an additional archetype
 function archetype() {
@@ -40,6 +40,9 @@ function generate() {
     const randRace = () => {
         let firstRace = textRace[Math.floor(Math.random() * textRace.length)];
         let secondRace = textRace[Math.floor(Math.random() * textRace.length)];
+        if (firstRace === 'elemental' || secondRace === 'elemental') {
+            elementalSwitch = true
+        };
 
         // 33.3% chance that the race is a random dual-race 
         if (Math.random() <= (1 / 3)) {
@@ -51,10 +54,6 @@ function generate() {
         } else {
             return firstRace;
         }
-
-        if (firstRace === textRace[4] || secondRace === textRace) {
-            elementalSwitch = true
-        };
     };
 
     // Extra, randomised description to be inserted IF 'elemental' is one of the options selected.
