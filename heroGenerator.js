@@ -11,7 +11,7 @@ function elf() {
 };
 
 //// MAIN - races
-const textRace = [/*'alien', 'birdperson', 'dragonborn', */'dwarf', 'elemental']//, elf(), 'fey', 'gnome', 'goblin', 'halfling', 'human', 'lizardman', 'minotaur', 'orc', 'tiefling', 'treant', 'troll'];
+const textRace = ['alien', 'birdperson', 'dragonborn', 'dwarf', 'elemental', elf(), 'fey', 'gnome', 'goblin', 'halfling', 'human', 'lizardman', 'minotaur', 'orc', 'tiefling', 'treant', 'troll'];
 
 //  25% chance of having an additional archetype
 function archetype() {
@@ -29,6 +29,13 @@ const textNormalClass = ['artificer', 'barbarian', 'bard', 'cleric', 'crusader',
 const textDarkClass = ['arsonist', 'assassin', 'axe murderer', 'bounty hunter', 'cultist', 'death knight', 'executioner', 'gang enforcer', 'hangman', 'human trafficker', 'necromancer', 'serial killer', 'slavedriver', 'torturer', 'warlord'];
 
 const textMehClass = ['accountant', 'beggar', 'farm hand', 'generally disappointing failure', 'hermit', 'pacifist', 'peasant', 'unsuccessful shopkeeper', 'social media influencer', 'inept town guard'];
+
+//// MAIN - description
+const weight = ['morbidly obese', 'a little overweight', 'about average weight', 'a little thin', 'utterly emaciated'];
+
+const height = ['freakishly, gigantically tall', 'pretty tall', 'about average height', 'pretty short', 'freakishly, ludicrously short'];
+
+const feature = ['comically oversized greataxe', 'comically oversized greatsword', 'comically oversized warhammer', 'comically tiny "greataxe"', 'comically tiny "greatsword"', 'comically tiny "warhammer"', 'complete lack of any distinctive features whatsoever', 'glass eye', 'hook in place of a hand', 'insuppressible love for croquet', 'insuppressible love for seal-clubbing', 'insuppressible love of petty vandalism', 'penchant for macaroons', 'scar that runs all the way along the left side of your face', 'terrible fear of clowns', 'terrible fear of heights', 'terrible fear of social interaction', 'two missing fingers on your left hand'];
 
 
 //// MAIN - generator
@@ -58,7 +65,6 @@ function generate() {
 
     // Extra, randomised description to be inserted IF 'elemental' is one of the options selected.
     function textElemental() {
-        
         const plane = ['Fire', 'Water', 'Earth', 'Wind', 'Thunder and Lightning', 'Darkness', 'Light'];
         if (elementalSwitch === true) {
             return ` of the Elemental Plane of ${plane[Math.floor(Math.random() * plane.length)]}`
@@ -81,12 +87,17 @@ function generate() {
         }
     };
 
+    //const randDescription
+
     // Output... with a 1% chance of apotheosis
     if (Math.random <= 0.01) {
         console.log('You are literally God (or one of them, perhaps). You win. Congratulations.')
     } else {
         console.log(`You are a proud ${randRace() + archetype() + textElemental()}.`);
+        console.log('');
         console.log(randClass());
+        console.log('');
+        console.log(`You are ${weight[Math.floor(Math.random() * weight.length)]} and ${height[Math.floor(Math.random() * height.length)]} for your race. The thing that really makes you stand out is your ${feature[Math.floor(Math.random() * feature.length)]}.`)
     };
 };
 
