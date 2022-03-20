@@ -46,16 +46,13 @@ const feature = ['comically oversized greataxe', 'comically oversized greatsword
 //// MAIN - generator
 
 function generate() {    
-    // Switch turns on and activates the insertion of a randomised element type, if one of the races is elemental
-    let elementalSwitch = false;
-    
-    const randRace = () => {
-        let firstRace = textRace[rng(textRace.length)];
-        let secondRace = textRace[rng(textRace.length)];
-        if (firstRace === 'elemental' || secondRace === 'elemental') {
-            elementalSwitch = true
-        };
+    // Defining these variables within the scope of the generate() function so that they are easily callable by the elemental switch (defined below)
+    let firstRace;
+    let secondRace;
 
+    const randRace = () => {
+        firstRace = textRace[rng(textRace.length)];
+        secondRace = textRace[rng(textRace.length)];
         // 33.3% chance that the race is a random dual-race 
         if (Math.random() <= (1 / 3)) {
             // Ensures a dual-race isn't the same race duplicated
@@ -68,10 +65,19 @@ function generate() {
         }
     };
 
+    // Checks if 'elemental' is the/one of the races seleceted, and if so, instructs the below function to insert description of the element type
+    function elementalSwitch() {
+        if (firstRace === 'elemental' || secondRace === 'elemental') {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
     // Extra, randomised description to be inserted IF 'elemental' is one of the options selected.
     function textElemental() {
         const plane = ['Fire', 'Water', 'Earth', 'Wind', 'Thunder and Lightning', 'Darkness', 'Light'];
-        if (elementalSwitch === true) {
+        if (elementalSwitch() === true) {
             return ` of the Elemental Plane of ${plane[rng(plane.length)]}`
         } else {
             return '';
@@ -91,8 +97,6 @@ function generate() {
             return `You are a true hero. Wherever loot lies unlooted, dragons sleep unslain, or damsels remain very much still in distress, you'll be there. With burning ambition, indomitable courage, and steel-edged determination, you follow the path... of the ${textNormalClass[rng(textNormalClass.length)]}.`
         }
     };
-
-    //const randDescription
 
     // Output... with a 1% chance of apotheosis
     if (Math.random <= 0.01) {
