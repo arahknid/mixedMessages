@@ -33,18 +33,17 @@ const textNormalClass = ['artificer', 'barbarian', 'bard', 'cleric', 'crusader',
 
 const textDarkClass = ['arsonist', 'assassin', 'axe murderer', 'bounty hunter', 'cultist', 'death knight', 'executioner', 'gang enforcer', 'hangman', 'human trafficker', 'necromancer', 'serial killer', 'slavedriver', 'torturer', 'warlord'];
 
-const textMehClass = ['accountant', 'beggar', 'farm hand', 'generally disappointing failure', 'hermit', 'pacifist', 'peasant', 'unsuccessful shopkeeper', 'social media influencer', 'inept town guard'];
+const textMehClass = ['accountant', 'beggar', 'farm hand', 'generally disappointing failure', 'hermit', 'inept town guard', 'pacifist', 'peasant', 'social media influencer', 'unsuccessful shopkeeper'];
 
 //// MAIN - description
-const weight = ['morbidly obese', 'a little overweight', 'about average weight', 'a little thin', 'utterly emaciated'];
+const weight = ['morbidly obese', 'very overweight', 'a little overweight', 'about average weight', 'a little thin', 'very thin', 'utterly emaciated'];
 
-const height = ['freakishly, gigantically tall', 'pretty tall', 'about average height', 'pretty short', 'freakishly, ludicrously short'];
+const height = ['freakishly, gigantically tall', 'very tall', 'pretty tall', 'about average height', 'pretty short', 'very short', 'freakishly, ludicrously short'];
 
-const feature = ['comically oversized greataxe', 'comically oversized greatsword', 'comically oversized warhammer', 'comically tiny "greataxe"', 'comically tiny "greatsword"', 'comically tiny "warhammer"', 'complete lack of any distinctive features whatsoever', 'glass eye', 'hook in place of a hand', 'insuppressible love for croquet', 'insuppressible love for seal-clubbing', 'insuppressible love of petty vandalism', 'penchant for macaroons', 'scar that runs all the way along the left side of your face', 'terrible fear of clowns', 'terrible fear of heights', 'terrible fear of social interaction', 'two missing fingers on your left hand'];
+const feature = ['comically oversized greataxe', 'comically oversized greatsword', 'comically oversized warhammer', 'comically tiny "greataxe"', 'comically tiny "greatsword"', 'comically tiny "warhammer"', 'complete lack of any distinctive features whatsoever', 'exceedingly annoying laugh', 'exceedingly jolly laugh', 'eyes, which are as bottomless and as black as the abyss', 'eyes, which carry a fiery glint', 'eyes, which carry an icy glint', 'eyes, which glow with a soft, magical light', 'family heirloom: an old, simple pendant that is set with a small, enigmatic, purple stone', 'family heirloom: a scarred, pockmarked, and yet beautifully crafted shortsword', 'glass eye', 'hook in place of a hand', 'insuppressible love for croquet', 'insuppressible love for seal-clubbing', 'insuppressible love of petty vandalism', 'missing right eye, which you keep covered with an old black patch', 'penchant for macaroons', 'penchant for boiled goat testicles', 'penchant for strong cider', 'scar that runs all the way along the left side of your face', 'terrible fear of clowns', 'terrible fear of heights', 'terrible fear of social interaction', 'two missing fingers on your left hand'];
 
 
 //// MAIN - generator
-
 function generate() {    
     // Defining these variables within the scope of the generate() function so that they are easily callable by the elemental switch (defined below)
     let firstRace;
@@ -61,6 +60,7 @@ function generate() {
             };
             return `${firstRace}-${secondRace}`;
         } else {
+            secondRace = '';
             return firstRace;
         }
     };
@@ -99,7 +99,7 @@ function generate() {
     };
 
     // Output... with a 1% chance of apotheosis
-    if (Math.random <= 0.01) {
+    if (Math.random() <= 0.01) {
         console.log('You are literally God (or one of them, perhaps). You win. Congratulations.')
     } else {
         console.log(`You are a proud ${randRace() + archetype() + textElemental()}.\n\n${randClass()}\n\nYou are ${weight[rng(weight.length)]} and ${height[rng(height.length)]} for your race. The thing that really makes you stand out is your ${feature[rng(feature.length)]}.`)
